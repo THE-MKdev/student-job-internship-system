@@ -1,0 +1,36 @@
+### Health Check
+GET http://localhost:5000
+
+### Register Student
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "student@test.com",
+  "password": "123456",
+  "role": "STUDENT",
+  "fullName": "Jane Doe"
+}
+
+### Register Employer
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "employer@test.com",
+  "password": "123456",
+  "role": "EMPLOYER",
+  "companyName": "Tech Corp"
+}
+
+### Login Student
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "student@test.com",
+  "password": "123456"
+}
+
+### Get Current User (after login)
+GET http://localhost:5000/api/auth/me

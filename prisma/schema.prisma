@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  EMPLOYER
+  SUPERVISOR
+  ADMIN
+}
+
+model User {
+  id                String   @id @default(uuid())
+  email             String   @unique
+  password          String
+  role              Role     @default(STUDENT)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  studentProfile    StudentProfile?
+  employerProfile   EmployerProfile?
+  supervisorProfile SupervisorProfile?
+  adminProfile      AdminProfile?
+  jobs              Job[]           @relation("EmployerJobs")
+  applications      Application[]
+  supervisions      Supervision[]   @relation("SupervisorAssignments")
+}
+
+model StudentProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName        String
+  bio             String?
+  skills          String[]
+  resumeUrl       String?
+  profileComplete Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model EmployerProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  companyName     String
+  website         String?
+  description     String?
+  logoUrl         String?
+  profileComplete Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model SupervisorProfile {
+  id         String   @id @default(uuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName   String
+  department String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model AdminProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id          String   @id @default(uuid())
+  employerId  String
+  employer    User     @relation("EmployerJobs", fields: [employerId], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  type        String
+  location    String?
+  salary      String?
+  skills      String[]
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  applications Application[]
+  supervisions Supervision[]
+}
+
+model Application {
+  id          String   @id @default(uuid())
+  jobId       String
+  job         Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  studentId   String
+  student     User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  status      String   @default("pending")
+  coverLetter String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([jobId, studentId])
+}
+
+model Supervision {
+  id           String   @id @default(uuid())
+  jobId        String
+  job          Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  supervisorId String
+  supervisor   User     @relation("SupervisorAssignments", fields: [supervisorId], references: [id], onDelete: Cascade)
+  assignedAt   DateTime @default(now())
+  notes        String?
+}
