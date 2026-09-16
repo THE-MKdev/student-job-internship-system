@@ -1,0 +1,52 @@
+### Get Student Profile
+GET http://localhost:5000/api/profile/student
+
+### Update Student Profile (multipart with resume)
+PUT http://localhost:5000/api/profile/student
+Content-Type: multipart/form-data; boundary=----FormBoundary
+
+------FormBoundary
+Content-Disposition: form-data; name="fullName"
+
+Jane Doe
+------FormBoundary
+Content-Disposition: form-data; name="bio"
+
+Computer Science student passionate about web development.
+------FormBoundary
+Content-Disposition: form-data; name="skills"
+Content-Type: application/json
+
+["JavaScript","React","Node.js"]
+------FormBoundary
+Content-Disposition: form-data; name="resume"; filename="resume.pdf"
+Content-Type: application/pdf
+
+< /path/to/your/resume.pdf
+------FormBoundary--
+
+### Get Employer Profile
+GET http://localhost:5000/api/profile/employer
+
+### Update Employer Profile (multipart with logo)
+PUT http://localhost:5000/api/profile/employer
+Content-Type: multipart/form-data; boundary=----FormBoundary
+
+------FormBoundary
+Content-Disposition: form-data; name="companyName"
+
+Tech Corp Inc.
+------FormBoundary
+Content-Disposition: form-data; name="website"
+
+https://techcorp.com
+------FormBoundary
+Content-Disposition: form-data; name="description"
+
+Leading technology company specializing in web solutions.
+------FormBoundary
+Content-Disposition: form-data; name="logo"; filename="logo.png"
+Content-Type: image/png
+
+< /path/to/your/logo.png
+------FormBoundary--

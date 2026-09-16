@@ -1,0 +1,33 @@
+### Create Job (Employer only)
+POST http://localhost:5000/api/jobs
+Content-Type: application/json
+
+{
+  "title": "Frontend Developer Intern",
+  "description": "3-month internship working with React.",
+  "type": "internship",
+  "location": "Remote",
+  "salary": "$1000/month",
+  "skills": ["React", "JavaScript", "CSS"]
+}
+
+### Get All Jobs (Public)
+GET http://localhost:5000/api/jobs
+
+### Get Job by ID
+GET http://localhost:5000/api/jobs/fde780e3-8b22-44dd-a4eb-db4076f21a1f
+
+### Get My Jobs (Employer only)
+GET http://localhost:5000/api/jobs/employer/my-jobs
+
+### Update Job (Employer only)
+PUT http://localhost:5000/api/jobs/f1412cc5-9ca3-43e7-a1ce-db4d57fa3a61
+Content-Type: application/json
+
+{
+  "title": "Senior Frontend Developer",
+  "salary": "$5000/month"
+}
+
+### Delete Job (Employer only)
+DELETE http://localhost:5000/api/jobs/8454b94c-a52b-4deb-8d3a-dd81ccda8fa2

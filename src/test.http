@@ -34,3 +34,54 @@ Content-Type: application/json
 
 ### Get Current User (after login)
 GET http://localhost:5000/api/auth/me
+
+### login Employer
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "employer@test.com",
+  "password": "123456",
+  "role": "EMPLOYER"
+}
+
+### Register Admin
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin@test.com",
+  "password": "123456",
+  "role": "ADMIN",
+  "fullName": "System Admin"
+}
+
+### Register Supervisor
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "supervisor@test.com",
+  "password": "123456",
+  "role": "SUPERVISOR",
+  "fullName": "Dr. Ahmed Bello",
+  "department": "Computer Science"
+}
+
+### Login Admin
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@test.com",
+  "password": "123456"
+}
+
+### Login Supervisor
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "supervisor@test.com",
+  "password": "123456"
+}

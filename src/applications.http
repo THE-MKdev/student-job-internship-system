@@ -1,0 +1,21 @@
+### Student Applies to Job (login as student first)
+POST http://localhost:5000/api/applications/jobs/fde780e3-8b22-44dd-a4eb-db4076f21a1f/apply
+Content-Type: application/json
+
+{
+  "coverLetter": "I am very interested in this position and believe I would be a great fit."
+}
+
+### Student Views Their Applications
+GET http://localhost:5000/api/applications/my-applications
+
+### Employer Views Applications for a Job (login as employer first)
+GET http://localhost:5000/api/applications/jobs/fde780e3-8b22-44dd-a4eb-db4076f21a1f/applications
+
+### Employer Updates Application Status (paste application id)
+PUT http://localhost:5000/api/applications/e092f79b-e6cf-4ab0-9c3d-78f54b09c5ab/status
+Content-Type: application/json
+
+{
+  "status": "shortlisted"
+}

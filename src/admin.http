@@ -1,0 +1,33 @@
+### Admin Dashboard Stats
+GET http://localhost:5000/api/admin/dashboard
+
+### Admin - Get All Users
+GET http://localhost:5000/api/admin/users
+
+### Admin - Filter Users by Role
+GET http://localhost:5000/api/admin/users?role=STUDENT
+
+### Admin - Get All Jobs
+GET http://localhost:5000/api/admin/jobs
+
+### Admin - Toggle Job Active Status
+PUT http://localhost:5000/api/admin/jobs/PASTE_JOB_ID_HERE/toggle
+
+### Admin - Get All Applications
+GET http://localhost:5000/api/admin/applications
+
+### Admin - Assign Supervisor to Job
+POST http://localhost:5000/api/admin/supervisions
+Content-Type: application/json
+
+{
+  "supervisorId": "c1a76bce-42eb-45b3-895e-9d03f35f5214",
+  "jobId": "89dd2b93-2e6f-439c-a216-e8028d23d53c",
+  "notes": "Monitor this internship placement."
+}
+
+### Admin - Get All Supervisions
+GET http://localhost:5000/api/admin/supervisions
+
+### Admin - Delete User
+DELETE http://localhost:5000/api/admin/users/1e6b8f33-48ba-4240-a1b3-bf35523341bb

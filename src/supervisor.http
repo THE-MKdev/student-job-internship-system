@@ -1,0 +1,34 @@
+### Login Supervisor
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "supervisor@test.com",
+  "password": "123456"
+}
+
+### Get Supervisor Profile
+GET http://localhost:5000/api/supervisor/profile
+
+### Update Supervisor Profile
+PUT http://localhost:5000/api/supervisor/profile
+Content-Type: application/json
+
+{
+  "fullName": "Dr. Ahmed Bello",
+  "department": "Software Engineering"
+}
+
+### Get My Supervisions
+GET http://localhost:5000/api/supervisor/supervisions
+
+### Get Supervision by ID
+GET http://localhost:5000/api/supervisor/supervisions/01ad2658-0729-46a6-b1ec-f0d74c2d93a5
+
+### Update Supervision Notes
+PUT http://localhost:5000/api/supervisor/supervisions/01ad2658-0729-46a6-b1ec-f0d74c2d93a5/notes
+Content-Type: application/json
+
+{
+  "notes": "Student is performing well. Regular progress meetings are ongoing."
+}
