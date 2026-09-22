@@ -8,6 +8,7 @@ const applicationRoutes = require('./routes/application.routes');
 const profileRoutes = require('./routes/profile.routes');
 const adminRoutes = require('./routes/admin.routes');
 const supervisorRoutes = require('./routes/supervisor.routes');
+const evaluationRoutes = require('./routes/evaluation.routes');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/api/applications', applicationRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/supervisor', supervisorRoutes);
+app.use('/api/evaluations', evaluationRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Student Job Portal API is running' });

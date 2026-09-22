@@ -85,3 +85,18 @@ Content-Type: application/json
   "email": "supervisor@test.com",
   "password": "123456"
 }
+
+### Login Employer
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "employer@test.com",
+  "password": "123456"
+}
+
+### Get My Jobs
+GET http://localhost:5000/api/jobs/employer/my-jobs
+
+### Who am I?
+GET http://localhost:5000/api/auth/me

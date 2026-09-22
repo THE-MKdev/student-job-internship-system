@@ -32,3 +32,38 @@ Content-Type: application/json
 {
   "notes": "Student is performing well. Regular progress meetings are ongoing."
 }
+
+### Login Supervisor
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "supervisor@test.com",
+  "password": "123456"
+}
+
+### Get My Supervisions
+GET http://localhost:5000/api/supervisor/supervisions
+
+### Get Supervision Details (paste supervision id)
+GET http://localhost:5000/api/supervisor/supervisions/067b690e-9b0e-4e86-b126-f3fa2a54db70
+
+### Submit Evaluation for Student (paste application id)
+PUT http://localhost:5000/api/supervisor/applications/a87a0ce8-a6be-437c-a89c-52b3596da2cd/evaluate
+Content-Type: application/json
+
+{
+  "punctuality": 4,
+  "technicalSkills": 5,
+  "communication": 4,
+  "teamwork": 5,
+  "initiative": 4,
+  "professionalism": 5,
+  "overallRating": 5,
+  "strengths": "Strong technical skills and excellent teamwork.",
+  "areasForImprovement": "Could improve documentation habits.",
+  "additionalComments": "Recommended for future opportunities."
+}
+
+### Get My Evaluations
+GET http://localhost:5000/api/supervisor/evaluations

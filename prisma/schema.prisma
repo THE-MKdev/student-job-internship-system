@@ -29,6 +29,7 @@ model User {
   jobs              Job[]           @relation("EmployerJobs")
   applications      Application[]
   supervisions      Supervision[]   @relation("SupervisorAssignments")
+  evaluationsGiven  Evaluation[]    @relation("SupervisorEvaluations")
 }
 
 model StudentProfile {
@@ -95,15 +96,16 @@ model Job {
 }
 
 model Application {
-  id          String   @id @default(uuid())
-  jobId       String
-  job         Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
-  studentId   String
-  student     User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  status      String   @default("pending")
-  coverLetter String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                 String   @id @default(uuid())
+  jobId              String
+  job                Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  studentId          String
+  student            User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  status             String   @default("pending")
+  coverLetter        String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  evaluation         Evaluation?
 
   @@unique([jobId, studentId])
 }
@@ -116,4 +118,28 @@ model Supervision {
   supervisor   User     @relation("SupervisorAssignments", fields: [supervisorId], references: [id], onDelete: Cascade)
   assignedAt   DateTime @default(now())
   notes        String?
+}
+
+model Evaluation {
+  id                  String   @id @default(uuid())
+  applicationId       String   @unique
+  application         Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  supervisorId        String
+  supervisor          User     @relation("SupervisorEvaluations", fields: [supervisorId], references: [id], onDelete: Cascade)
+
+  // Rating criteria (1-5)
+  punctuality         Int
+  technicalSkills     Int
+  communication       Int
+  teamwork            Int
+  initiative          Int
+  professionalism     Int
+
+  overallRating       Int
+  strengths           String?
+  areasForImprovement String?
+  additionalComments  String?
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 }

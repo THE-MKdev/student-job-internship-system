@@ -19,3 +19,6 @@ Content-Type: application/json
 {
   "status": "shortlisted"
 }
+
+### Get My Jobs
+GET http://localhost:5000/api/jobs/employer/my-jobs

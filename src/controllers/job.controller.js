@@ -158,7 +158,7 @@ const getMyJobs = async (req, res) => {
             where: { employerId: req.session.user.id },
             orderBy: { createdAt: 'desc' },
         });
-        res.json({jobs})
+        res.json(jobs);
     } catch (error) {
         console.error('Get my jobs error',error);
         res.status(500).json({message: 'Server error' });

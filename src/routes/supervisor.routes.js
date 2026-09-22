@@ -6,6 +6,10 @@ const {
   getSupervisionById,
   updateSupervisionNotes,
 } = require('../controllers/supervisor.controller');
+const {
+  submitEvaluation,
+  getMyEvaluations,
+} = require('../controllers/evaluation.controller');
 const { authenticate, authorize } = require('../middlewares/auth.middleware');
 
 // All supervisor routes require authentication and SUPERVISOR role
@@ -19,5 +23,8 @@ router.put('/profile', updateSupervisorProfile);
 router.get('/supervisions', getMySupervisions);
 router.get('/supervisions/:id', getSupervisionById);
 router.put('/supervisions/:id/notes', updateSupervisionNotes);
+
+router.put('/applications/:applicationId/evaluate', submitEvaluation);
+router.get('/evaluations', getMyEvaluations);
 
 module.exports = router;
